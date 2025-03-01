@@ -1,24 +1,29 @@
 import { Router } from 'express';
 const router = Router();
-// import {
-//   getAllStudents,
-//   getStudentById,
-//   createStudent,
-//   deleteStudent,
-//   addAssignment,
-//   removeAssignment,
-// } from '../../controllers/studentController.js';
+import {
+  getAllUsers,
+  getUserById,
+  createUser,
+  deleteUser,
+  updateUser,
+  addFriend,
+  deleteFriend,
+} from '../../controllers/userController.js';
 
-// // /api/students
-// router.route('/').get(getAllStudents).post(createStudent);
+// /api/users
+router.route('/').get(getAllUsers).post(createUser);
 
-// // /api/students/:studentId
-// router.route('/:studentId').get(getStudentById).delete(deleteStudent);
+// /api/users/:userId
+router
+.route('/:userId')
+.get(getUserById)
+.put(updateUser)
+.delete(deleteUser);
 
-// // /api/students/:studentId/assignments
-// router.route('/:studentId/assignments').post(addAssignment);
-
-// // /api/students/:studentId/assignments/:assignmentId
-// router.route('/:studentId/assignments/:assignmentId').delete(removeAssignment);
+// /api/users/:userId/friends/:friendId
+router
+.route('/:userId/friends/:friendId')
+.post(addFriend)
+.delete(deleteFriend);
 
 export { router as usersRouter} ;

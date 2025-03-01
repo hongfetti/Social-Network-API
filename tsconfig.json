@@ -33,6 +33,6 @@
       "noImplicitOverride": true /* Ensure overriding members in derived classes are marked with an override modifier. */,
       "useUnknownInCatchVariables": true /* Ensure 'unknown' is used for catch clause variables. */
     },
-    "include": ["src", "src/server.ts"]
+    // "include": ["src", "src/server.ts"]
   }
   
