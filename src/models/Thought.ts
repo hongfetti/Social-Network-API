@@ -4,9 +4,9 @@ import Reaction from './Reaction.js';
 interface IThought extends Document {
     thoughtText: String;
     createdAt: Date;
-    username: ObjectId;
+    userId: ObjectId;
     // double check on the below "typeof" - works for now (aka no red)
-    reactions: typeof Reaction[];
+    reactions: ObjectId[];
 }
 
 const thoughtSchema = new Schema<IThought>(
@@ -21,14 +21,14 @@ const thoughtSchema = new Schema<IThought>(
             default: Date.now,
             // need getter method to set timestamp
           },
-        username: [
+        userId: [
             {
                 type: Schema.Types.ObjectId,
                 ref: 'User',
                 required: true
             }
         ],
-        reactions: [Reaction]
+        reactions: [Reaction],
     },
     {
         toJSON: {
@@ -39,6 +39,9 @@ const thoughtSchema = new Schema<IThought>(
 )
 
 // Make a virtual called reactionCount that retrives the length of the reactions array
+thoughtSchema.virtual('reactionCount').get(function () {
+    return this.reactions.length;
+})
 
 const Thought = model('Thought', thoughtSchema);
 

@@ -41,7 +41,8 @@ export const updateUser = async (req: Request, res: Response) => {
   try {
     const user = await User.findOneAndUpdate(
       { _id: req.params.userId },
-      { $set: req.body }
+      { $set: req.body },
+      { new: true }
     );
 
     if (!user) {
@@ -76,7 +77,8 @@ export const addFriend = async (req: Request, res: Response) => {
   try {
     const user = await User.findOneAndUpdate(
       { _id: req.params.userId },
-      { $addToSet: { responses: req.body } }
+      { $addToSet: { friends: req.params.friendId } },
+      { new: true }
     );
 
     if (!user) {
@@ -93,20 +95,21 @@ export const addFriend = async (req: Request, res: Response) => {
 
 // delete friend
 export const deleteFriend = async (req: Request, res: Response) => {
-    try {
-        const user = await User.findOneAndDelete(
-          { _id: req.params.userId },
-          { $pull: { responses: { responseId: req.params.responseId } } }
-        );
-    
-        if (!user) {
-          return res.status(404).json({ message: "No user with this ID!" });
-        }
-    
-        res.json(user);
-        return;
-      } catch (err) {
-        res.status(500).json(err);
-        return;
-      }
+  try {
+    const user = await User.findOneAndUpdate(
+      { _id: req.params.userId },
+      { $pull: { friends: req.params.friendId } }, 
+      { new: true }
+    );
+
+    if (!user) {
+      return res.status(404).json({ message: "No user with this ID!" });
+    }
+
+    res.json(user);
+    return
+  } catch (err) {
+    res.status(500).json(err);
+    return
+  }
 };
