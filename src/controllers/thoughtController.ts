@@ -119,7 +119,7 @@ export const addReaction = async(req: Request, res: Response) => {
           return res.status(404).json({ message: "No thought with this ID!" });
         }
     
-        res.json(thought);
+        res.json({ message: "Reaction successfully added!", reaction, thought});
         return;
       } catch (err) {
         res.status(500).json(err);
@@ -140,7 +140,7 @@ export const deleteReaction = async(req: Request, res: Response) => {
             return res.status(404).json({ message: "No thoughts with this ID!" });
         }
 
-        res.json(thought)
+        res.json({ message: "Reaction successfully deleted from thought!", thought})
         return
     } catch (err) {
         res.status(500).json(err);

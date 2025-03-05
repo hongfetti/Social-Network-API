@@ -1,10 +1,11 @@
 import { Schema, ObjectId, Types, type Document } from 'mongoose';
+import { format } from 'date-fns';
 
 interface IReaction extends Document {
     reactionId: ObjectId;
     reactionBody: string;
     username: string;
-    createdAt: Date;
+    createdAt: String;
 }
 
 const reactionSchema = new Schema<IReaction>(
@@ -25,7 +26,7 @@ const reactionSchema = new Schema<IReaction>(
           createdAt: {
             type: Date,
             default: Date.now,
-            // need getter method to set timestamp
+            get: (value: Date): string => format(value, 'MMMM dd, yyyy h:mm a'),
           },
         },
         {

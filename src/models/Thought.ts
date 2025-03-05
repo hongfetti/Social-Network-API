@@ -1,11 +1,11 @@
 import { Schema, ObjectId, model, type Document } from 'mongoose';
+import { format } from 'date-fns';
 import Reaction from './Reaction.js';
 
 interface IThought extends Document {
     thoughtText: String;
-    createdAt: Date;
+    createdAt: String;
     userId: ObjectId;
-    // double check on the below "typeof" - works for now (aka no red)
     reactions: ObjectId[];
 }
 
@@ -19,7 +19,7 @@ const thoughtSchema = new Schema<IThought>(
         createdAt: {
             type: Date,
             default: Date.now,
-            // need getter method to set timestamp
+            get: (value: Date): string => format(value, 'MMMM dd, yyyy h:mm a'),
           },
         userId: [
             {
@@ -33,6 +33,7 @@ const thoughtSchema = new Schema<IThought>(
     {
         toJSON: {
             virtuals: true,
+            getters: true,
         },
         id: false,
     },

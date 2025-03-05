@@ -9,8 +9,21 @@ interface IUser extends Document {
 
 const userSchema = new Schema<IUser>(
     {
-        username: String,
-        email: String,
+        username: {
+            type: String,
+            required: true,
+            unique: true,
+            trim: true,
+        },
+        email: {
+            type: String,
+            required: true,
+            unique: true,
+            match: [
+                /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, 
+                'Please provide a valid email address',
+            ],
+        },
         friends: [
             {
                 type: Schema.Types.ObjectId,
