@@ -34,7 +34,7 @@ Click the license badge above for more information.
 
 ## Features
 
-
+Can perform various CRUD operations for Users, Thoughts and Reactions. Can take existing users and add as friends to other users.
 
 ## How to Contribute
 
@@ -42,10 +42,11 @@ If you would like to contribute to this application, please consult the guidelin
 
 ## Tests
 
-
+![Alt text](./src/assets/images/Insomnia-SS-SocialNetworkAPI.PNG)
 
 ## Questions
 
+If you have any questions, please reach out to me:
 Github: http://github.com/Hongfetti
 
 Email: ryan.hong1994@gmail.com
