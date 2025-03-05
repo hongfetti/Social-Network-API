@@ -42,6 +42,9 @@ If you would like to contribute to this application, please consult the guidelin
 
 ## Tests
 
+Demo:
+https://youtu.be/aqiyJTUFsrM
+
 ![Alt text](./src/assets/images/Insomnia-SS-SocialNetworkAPI.PNG)
 
 ## Questions
